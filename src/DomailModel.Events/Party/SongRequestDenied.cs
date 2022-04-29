@@ -1,4 +1,4 @@
-﻿namespace DomainModel.Events;
+﻿namespace DomainModel.Events.Party;
 
 public record SongRequestDenied : EventBase
 {
@@ -17,6 +17,4 @@ public record SongRequestDenied : EventBase
     public string ReasonForNotPlayingSong { get; init; }
 
     public string PartyId { get; init; }
-
-    public override string Type => "songRequestDenied";
 }

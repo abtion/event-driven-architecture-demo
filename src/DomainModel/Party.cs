@@ -6,12 +6,12 @@ namespace DomainModel;
 
 public class Party
 {
-    private readonly CreatePartyService createPartyService;
-    private readonly RequestSongService requestSongService;
-    private readonly DenySongService denySongService;
-    private readonly PlaySongService playSongService;
-    private readonly LoadPartyService loadPartyService;
-    private readonly UpdatePartyService updatePartyService;
+    private readonly CreatePartyService _createPartyService;
+    private readonly RequestSongService _requestSongService;
+    private readonly DenySongService _denySongService;
+    private readonly PlaySongService _playSongService;
+    private readonly LoadPartyService _loadPartyService;
+    private readonly UpdatePartyService _updatePartyService;
 
     public Party(CreatePartyService createPartyService,
         RequestSongService requestSongService,
@@ -20,41 +20,41 @@ public class Party
         LoadPartyService loadPartyService,
         UpdatePartyService updatePartyService)
     {
-        this.createPartyService = createPartyService;
-        this.requestSongService = requestSongService;
-        this.denySongService = denySongService;
-        this.playSongService = playSongService;
-        this.loadPartyService = loadPartyService;
-        this.updatePartyService = updatePartyService;
+        _createPartyService = createPartyService;
+        _requestSongService = requestSongService;
+        _denySongService = denySongService;
+        _playSongService = playSongService;
+        _loadPartyService = loadPartyService;
+        _updatePartyService = updatePartyService;
     }
 
     public async Task<string> CreateParty(CreatePartyModel model)
     {
-        return await createPartyService.CreateParty(model);
+        return await _createPartyService.CreateParty(model);
     }
 
     public async Task UpdateParty(UpdatePartyModel model)
     {
-        await updatePartyService.UpdateParty(model);
+        await _updatePartyService.UpdateParty(model);
     }
 
     public async Task RequestSong(RequestSongModel model)
     {
-        await requestSongService.RequestSong(model);
+        await _requestSongService.RequestSong(model);
     }
 
     public async Task DenySong(DenySongModel model)
     {
-        await denySongService.DenySong(model);
+        await _denySongService.DenySong(model);
     }
 
     public async Task PlaySong(PlaySongModel model)
     {
-        await playSongService.PlaySong(model);
+        await _playSongService.PlaySong(model);
     }
 
     public async Task<PartyProjection?> LoadParty(string partyId)
     {
-        return await loadPartyService.LoadParty(partyId);
+        return await _loadPartyService.LoadParty(partyId);
     }
 }

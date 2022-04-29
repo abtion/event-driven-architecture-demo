@@ -1,4 +1,5 @@
 ﻿using DomainModel.Events;
+using DomainModel.Events.Party;
 using DomainModel.Projections;
 
 using Storage.CosmosDb;
@@ -7,9 +8,9 @@ namespace DomainModel.Services.Party;
 
 public class LoadPartyService
 {
-    private readonly ICosmosDbService cosmosDbService;
+    private readonly ICosmosDbService<EventBase> cosmosDbService;
 
-    public LoadPartyService(ICosmosDbService cosmosDbService)
+    public LoadPartyService(ICosmosDbService<EventBase> cosmosDbService)
     {
         this.cosmosDbService = cosmosDbService;
     }

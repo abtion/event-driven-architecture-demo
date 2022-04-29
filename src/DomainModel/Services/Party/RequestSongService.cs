@@ -1,14 +1,16 @@
 ﻿using DomainModel.Events;
+using DomainModel.Events.Party;
 using DomainModel.Models;
+
 using Storage.CosmosDb;
 
 namespace DomainModel.Services.Party;
 
 public class RequestSongService
 {
-    private readonly ICosmosDbService cosmosDbService;
+    private readonly ICosmosDbService<EventBase> cosmosDbService;
 
-    public RequestSongService(ICosmosDbService cosmosDbService)
+    public RequestSongService(ICosmosDbService<EventBase> cosmosDbService)
     {
         this.cosmosDbService = cosmosDbService;
     }

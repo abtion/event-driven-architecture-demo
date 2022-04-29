@@ -1,6 +1,8 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿using System.Text;
+
+using Microsoft.Azure.Cosmos;
+
 using Newtonsoft.Json;
-using System.Text;
 
 namespace Storage.CosmosDb;
 

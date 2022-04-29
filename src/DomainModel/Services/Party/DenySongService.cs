@@ -1,14 +1,16 @@
 ﻿using DomainModel.Events;
+using DomainModel.Events.Party;
 using DomainModel.Models;
+
 using Storage.CosmosDb;
 
 namespace DomainModel.Services.Party;
 
 public class DenySongService
 {
-    private readonly ICosmosDbService cosmosDbService;
+    private readonly ICosmosDbService<EventBase> cosmosDbService;
 
-    public DenySongService(ICosmosDbService cosmosDbService)
+    public DenySongService(ICosmosDbService<EventBase> cosmosDbService)
     {
         this.cosmosDbService = cosmosDbService;
     }

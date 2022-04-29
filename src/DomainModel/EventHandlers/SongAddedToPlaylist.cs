@@ -1,4 +1,5 @@
-﻿using DomainModel.Events;
+﻿using DomainModel.Events.Party;
+
 using MediatR;
 
 namespace DomainModel.EventHandlers;

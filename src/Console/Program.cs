@@ -62,6 +62,9 @@ async Task PrintParty()
 {
     var party = await domainModel!.Party.LoadParty(partyId!);
 
+    if (party is null)
+        return;
+
     Console.WriteLine($"*** Party: {party.Name} ***");
     Console.WriteLine($"*** Requested Songs ({party.RequestedSongs.Count}) ***");
 

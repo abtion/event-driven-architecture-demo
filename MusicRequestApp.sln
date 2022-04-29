@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.CosmosDb", "src\Sto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel.Events", "src\DomailModel.Events\DomainModel.Events.csproj", "{9707F76B-F830-4359-BFE4-193FEE2DC9C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel.Projections", "src\DomainModel.Projections\DomainModel.Projections.csproj", "{E3D735E7-9F4B-499A-B4EE-6554A402443A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.CosmosDb.Abstractions", "src\Storage.CosmosDb.Abstractions\Storage.CosmosDb.Abstractions.csproj", "{A59C4B8A-E646-4241-A477-FBBAE4638ECE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{9707F76B-F830-4359-BFE4-193FEE2DC9C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9707F76B-F830-4359-BFE4-193FEE2DC9C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9707F76B-F830-4359-BFE4-193FEE2DC9C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3D735E7-9F4B-499A-B4EE-6554A402443A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3D735E7-9F4B-499A-B4EE-6554A402443A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3D735E7-9F4B-499A-B4EE-6554A402443A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3D735E7-9F4B-499A-B4EE-6554A402443A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A59C4B8A-E646-4241-A477-FBBAE4638ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A59C4B8A-E646-4241-A477-FBBAE4638ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A59C4B8A-E646-4241-A477-FBBAE4638ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A59C4B8A-E646-4241-A477-FBBAE4638ECE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

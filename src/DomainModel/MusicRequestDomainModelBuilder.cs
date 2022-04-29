@@ -1,28 +1,32 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿using DomainModel.Events;
+
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using Newtonsoft.Json;
+
 using Storage.CosmosDb;
 
 namespace DomainModel;
 
 public class MusicRequestDomainModelBuilder
 {
-    private readonly IServiceCollection services;
+    private readonly IServiceCollection _services;
 
     public MusicRequestDomainModelBuilder(IServiceCollection services)
     {
-        this.services = services;
+        this._services = services;
     }
 
     public MusicRequestDomainModelBuilder UseCosmosDb(IConfigurationSection configurationSection)
     {
-        services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(configurationSection).GetAwaiter().GetResult());
+        _services.AddSingleton(InitializeCosmosClientInstanceAsync(configurationSection).GetAwaiter().GetResult());
 
         return this;
     }
 
-    private static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
+    private static async Task<ICosmosDbService<EventBase>> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
     {
         string databaseName = configurationSection.GetSection("DatabaseName").Value;
         string containerName = configurationSection.GetSection("ContainerName").Value;

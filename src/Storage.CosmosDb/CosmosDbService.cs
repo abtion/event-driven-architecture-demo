@@ -1,4 +1,5 @@
 ﻿using DomainModel.Events;
+
 using Microsoft.Azure.Cosmos;
 
 namespace Storage.CosmosDb;
@@ -6,7 +7,7 @@ namespace Storage.CosmosDb;
 /// <summary>
 /// https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-dotnet-application
 /// </summary>
-public class CosmosDbService : ICosmosDbService
+public class CosmosDbService : ICosmosDbService<EventBase>
 {
     private readonly Container _container;
 

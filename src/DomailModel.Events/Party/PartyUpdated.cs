@@ -1,4 +1,4 @@
-﻿namespace DomainModel.Events;
+﻿namespace DomainModel.Events.Party;
 
 public record PartyUpdated : EventBase
 {
@@ -8,6 +8,4 @@ public record PartyUpdated : EventBase
     }
 
     public string Name { get; init; }
-
-    public override string Type => "partyUpdated";
 }

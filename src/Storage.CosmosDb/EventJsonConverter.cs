@@ -1,6 +1,9 @@
 ﻿using DomainModel.Events;
+using DomainModel.Events.Party;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
 using Storage.CosmosDb.Exceptions;
 
 namespace Storage.CosmosDb;
@@ -35,23 +38,23 @@ public class EventJsonConverter : JsonConverter
 
         switch (typeName)
         {
-            case "partyCreated":
+            case nameof(PartyCreated):
                 _event = obj.ToObject<PartyCreated>(serializer);
                 break;
 
-            case "partyUpdated":
+            case nameof(PartyUpdated):
                 _event = obj.ToObject<PartyUpdated>(serializer);
                 break;
 
-            case "songRequestDenied":
+            case nameof(SongRequestDenied):
                 _event = obj.ToObject<SongRequestDenied>(serializer);
                 break;
 
-            case "songRequested":
+            case nameof(SongRequested):
                 _event = obj.ToObject<SongRequested>(serializer);
                 break;
 
-            case "songRequestMet":
+            case nameof(SongRequestMet):
                 _event = obj.ToObject<SongRequestMet>(serializer);
                 break;
         }

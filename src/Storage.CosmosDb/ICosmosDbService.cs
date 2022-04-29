@@ -1,12 +1,10 @@
-﻿using DomainModel.Events;
+﻿namespace Storage.CosmosDb;
 
-namespace Storage.CosmosDb;
-
-public interface ICosmosDbService
+public interface ICosmosDbService<T>
 {
-    Task<IEnumerable<EventBase>> GetItemsAsync(string query);
-    Task<EventBase?> GetItemAsync(string id);
-    Task AddItemAsync(EventBase item);
-    Task UpdateItemAsync(string id, EventBase item);
+    Task<IEnumerable<T>> GetItemsAsync(string query);
+    Task<T?> GetItemAsync(string id);
+    Task AddItemAsync(T item);
+    Task UpdateItemAsync(string id, T item);
     Task DeleteItemAsync(string id, string partitionKey);
 }

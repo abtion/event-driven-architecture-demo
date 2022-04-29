@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Storage.CosmosDb.Abstractions;
 
 namespace DomainModel.Events;
 
-public abstract record EventBase : ICosmosDbDocument
+public record EventBase : ICosmosDbItem
 {
     public EventBase(string id, string partitionKey, DateTime created)
     {
@@ -11,12 +11,11 @@ public abstract record EventBase : ICosmosDbDocument
         Created = created;
     }
 
-    [JsonProperty("id")] public string Id { get; init; }
+    public string Id { get; init; }
 
-    [JsonProperty("partitionKey")] public string PartitionKey { get; init; }
+    public string Type => GetType().Name;
 
-    [JsonProperty("$type")]
-    public abstract string Type { get; }
+    public string PartitionKey { get; init; }
 
     public DateTime Created { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace DomainModel.Events;
+﻿namespace DomainModel.Events.Party;
 
 public record SongRequested : EventBase
 {
@@ -17,6 +17,4 @@ public record SongRequested : EventBase
     public string Artist { get; init; }
 
     public string PartyId { get; init; }
-
-    public override string Type => "songRequested";
 }

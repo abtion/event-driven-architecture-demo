@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DomainModel.Projections\DomainModel.Projections.csproj" />
     <ProjectReference Include="..\Storage.CosmosDb\Storage.CosmosDb.csproj" />
   </ItemGroup>
 

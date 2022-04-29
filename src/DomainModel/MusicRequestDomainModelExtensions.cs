@@ -1,4 +1,5 @@
 ﻿using DomainModel.Services.Party;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DomainModel;
