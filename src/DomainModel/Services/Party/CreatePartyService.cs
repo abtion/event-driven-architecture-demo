@@ -1,5 +1,4 @@
-﻿using DomainModel.Events;
-using DomainModel.Events.Party;
+﻿using DomainModel.Events.Party;
 using DomainModel.Models;
 
 using Storage.CosmosDb;
@@ -8,9 +7,9 @@ namespace DomainModel.Services.Party;
 
 public class CreatePartyService
 {
-    private readonly ICosmosDbService<EventBase> cosmosDbService;
+    private readonly ICosmosDbService cosmosDbService;
 
-    public CreatePartyService(ICosmosDbService<EventBase> cosmosDbService)
+    public CreatePartyService(ICosmosDbService cosmosDbService)
     {
         this.cosmosDbService = cosmosDbService;
     }
@@ -22,7 +21,7 @@ public class CreatePartyService
 
         var partyCreated = new PartyCreated(id, id, model.Name, DateTime.Now.ToUniversalTime());
 
-        await cosmosDbService.AddItemAsync(partyCreated);
+        await cosmosDbService.EventContainerService.AddItemAsync(partyCreated);
 
         return id;
     }

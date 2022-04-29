@@ -10,7 +10,8 @@ var settings = new Dictionary<string, string> {
         { $"MusicRequest:DomainModel:CosmosDb:Account", "https://localhost:8081" },
         { $"MusicRequest:DomainModel:CosmosDb:Key", "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==" },
         { $"MusicRequest:DomainModel:CosmosDb:DatabaseName", "MusicRequest" },
-        { $"MusicRequest:DomainModel:CosmosDb:ContainerName", "Parties" },
+        { $"MusicRequest:DomainModel:CosmosDb:EventsContainerName", "Events" },
+        { $"MusicRequest:DomainModel:CosmosDb:ProjectionsContainerName", "Projections" },
 };
 
 var configBuilder = new ConfigurationBuilder();

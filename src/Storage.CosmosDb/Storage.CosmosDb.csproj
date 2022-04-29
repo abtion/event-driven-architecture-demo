@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DomailModel.Events\DomainModel.Events.csproj" />
+    <ProjectReference Include="..\DomainModel.Projections\DomainModel.Projections.csproj" />
   </ItemGroup>
 
 </Project>

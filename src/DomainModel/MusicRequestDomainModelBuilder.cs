@@ -1,4 +1,6 @@
-﻿using DomainModel.Events;
+﻿
+using DomainModel.Events;
+using DomainModel.Projections;
 
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
@@ -26,10 +28,11 @@ public class MusicRequestDomainModelBuilder
         return this;
     }
 
-    private static async Task<ICosmosDbService<EventBase>> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
+    private static async Task<ICosmosDbService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
     {
         string databaseName = configurationSection.GetSection("DatabaseName").Value;
-        string containerName = configurationSection.GetSection("ContainerName").Value;
+        string eventsContainerName = configurationSection.GetSection("EventsContainerName").Value;
+        string projectionsContainerName = configurationSection.GetSection("ProjectionsContainerName").Value;
         string account = configurationSection.GetSection("Account").Value;
         string key = configurationSection.GetSection("Key").Value;
 
@@ -46,14 +49,17 @@ public class MusicRequestDomainModelBuilder
         };
 
         var client = new CosmosClient(account, key, clientOptions);
-        var cosmosDbService = new CosmosDbService(client, databaseName, containerName);
 
         DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
         await database.Database.DeleteAsync();
         database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
 
-        await database.Database.CreateContainerIfNotExistsAsync(containerName, "/partitionKey");
+        await database.Database.CreateContainerIfNotExistsAsync(eventsContainerName, "/partitionKey");
+        await database.Database.CreateContainerIfNotExistsAsync(projectionsContainerName, "/partitionKey");
 
-        return cosmosDbService;
+        var eventContainer = new CosmosDbContainerService<EventBase>(client, databaseName, eventsContainerName);
+        var projectionsContainer = new CosmosDbContainerService<ProjectionBase>(client, databaseName, projectionsContainerName);
+
+        return new CosmosDbService(eventContainer, projectionsContainer);
     }
 }

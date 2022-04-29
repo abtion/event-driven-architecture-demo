@@ -1,5 +1,4 @@
-﻿using DomainModel.Events;
-using DomainModel.Events.Party;
+﻿using DomainModel.Events.Party;
 using DomainModel.Projections;
 
 using Storage.CosmosDb;
@@ -8,16 +7,16 @@ namespace DomainModel.Services.Party;
 
 public class LoadPartyService
 {
-    private readonly ICosmosDbService<EventBase> cosmosDbService;
+    private readonly ICosmosDbService cosmosDbService;
 
-    public LoadPartyService(ICosmosDbService<EventBase> cosmosDbService)
+    public LoadPartyService(ICosmosDbService cosmosDbService)
     {
         this.cosmosDbService = cosmosDbService;
     }
 
     internal async Task<PartyProjection?> LoadParty(string partyId)
     {
-        var events = await cosmosDbService.GetItemsAsync($"SELECT * FROM c WHERE c.partitionKey = \"{partyId}\" ORDER BY c.Created");
+        var events = await cosmosDbService.EventContainerService.GetItemsAsync($"SELECT * FROM c WHERE c.partitionKey = \"{partyId}\" ORDER BY c.Created");
 
         if (events is null)
             return default!;

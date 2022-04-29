@@ -1,5 +1,4 @@
-﻿using DomainModel.Events;
-using DomainModel.Events.Party;
+﻿using DomainModel.Events.Party;
 using DomainModel.Models;
 
 using Storage.CosmosDb;
@@ -8,9 +7,9 @@ namespace DomainModel.Services.Party;
 
 public class DenySongService
 {
-    private readonly ICosmosDbService<EventBase> cosmosDbService;
+    private readonly ICosmosDbService cosmosDbService;
 
-    public DenySongService(ICosmosDbService<EventBase> cosmosDbService)
+    public DenySongService(ICosmosDbService cosmosDbService)
     {
         this.cosmosDbService = cosmosDbService;
     }
@@ -22,7 +21,7 @@ public class DenySongService
 
         var songDenied = new SongRequestDenied(id, model.PartyId, model.PartyId, DateTime.Now.ToUniversalTime(), model.SongTitle, model.ArtistName, model.ReasonForNotPlayingSong);
 
-        await cosmosDbService.AddItemAsync(songDenied);
+        await cosmosDbService.EventContainerService.AddItemAsync(songDenied);
 
         return id;
     }

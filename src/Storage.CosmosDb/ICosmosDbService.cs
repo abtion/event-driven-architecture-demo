@@ -1,10 +1,10 @@
-﻿namespace Storage.CosmosDb;
+﻿using DomainModel.Events;
+using DomainModel.Projections;
 
-public interface ICosmosDbService<T>
+namespace Storage.CosmosDb;
+
+public interface ICosmosDbService
 {
-    Task<IEnumerable<T>> GetItemsAsync(string query);
-    Task<T?> GetItemAsync(string id);
-    Task AddItemAsync(T item);
-    Task UpdateItemAsync(string id, T item);
-    Task DeleteItemAsync(string id, string partitionKey);
+    ICosmosDbContainerService<EventBase> EventContainerService { get; }
+    ICosmosDbContainerService<ProjectionBase> ProjectionContainerService { get; }
 }

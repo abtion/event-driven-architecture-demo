@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Storage.CosmosDb.Abstractions\Storage.CosmosDb.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
