@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console", "src\Console\Cons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.CosmosDb", "src\Storage.CosmosDb\Storage.CosmosDb.csproj", "{998242B4-6F00-478C-BA47-F4066BC13CE6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel.Events", "src\DomailModel.Events\DomainModel.Events.csproj", "{9707F76B-F830-4359-BFE4-193FEE2DC9C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel.Documents", "src\DomailModel.Events\DomainModel.Documents.csproj", "{9707F76B-F830-4359-BFE4-193FEE2DC9C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel.Projections", "src\DomainModel.Projections\DomainModel.Projections.csproj", "{E3D735E7-9F4B-499A-B4EE-6554A402443A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel.Projections", "src\DomainModel.Projections\DomainModel.Projections.csproj", "{E3D735E7-9F4B-499A-B4EE-6554A402443A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.CosmosDb.Abstractions", "src\Storage.CosmosDb.Abstractions\Storage.CosmosDb.Abstractions.csproj", "{A59C4B8A-E646-4241-A477-FBBAE4638ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.CosmosDb.Abstractions", "src\Storage.CosmosDb.Abstractions\Storage.CosmosDb.Abstractions.csproj", "{A59C4B8A-E646-4241-A477-FBBAE4638ECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

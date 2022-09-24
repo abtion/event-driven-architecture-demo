@@ -7,7 +7,7 @@ namespace Storage.CosmosDb;
 /// <summary>
 /// https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-dotnet-application
 /// </summary>
-public class CosmosDbContainerService<T> : ICosmosDbContainerService<T> where T : ICosmosDbItem
+public class CosmosDbContainerService<T> : ICosmosDbContainerService<T> where T : ICosmosDbDocument
 {
     private readonly Container _container;
 

@@ -1,8 +1,8 @@
-﻿namespace DomainModel.Events.Party;
+﻿namespace DomainModel.Documents.Party;
 
-public record SongRequestDenied : EventBase
+public record SongDeniedDocument : DocumentBase
 {
-    public SongRequestDenied(string id, string partitionKey, string partyId, DateTime created, string songTitle, string artist, string reasonForNotPlayingSong) : base(id, partitionKey, created)
+    public SongDeniedDocument(string id, string partitionKey, string partyId, DateTime created, string songTitle, string artist, string reasonForNotPlayingSong) : base(id, partitionKey, created)
     {
         SongTitle = songTitle;
         Artist = artist;

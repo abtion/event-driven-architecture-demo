@@ -1,9 +1,11 @@
-﻿using DomainModel.Events;
-using DomainModel.Events.Party;
+﻿using DomainModel.Documents;
+using DomainModel.Documents.Party;
+using DomainModel.Projections;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using Storage.CosmosDb.Abstractions;
 using Storage.CosmosDb.Exceptions;
 
 namespace Storage.CosmosDb;
@@ -17,7 +19,7 @@ public class EventJsonConverter : JsonConverter
     public override bool CanConvert(Type objectType)
     {
         // Only if the target type is the abstract base class
-        return objectType == typeof(EventBase);
+        return objectType == typeof(DocumentBase);
     }
 
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
@@ -34,35 +36,40 @@ public class EventJsonConverter : JsonConverter
         if (typeName is null)
             throw new DocumentDoesNotContainTypePropertyException();
 
-        EventBase? _event = null;
+        ICosmosDbDocument? _item = null;
 
+        // maybe use reflection to initialize the instances here?
         switch (typeName)
         {
-            case nameof(PartyCreated):
-                _event = obj.ToObject<PartyCreated>(serializer);
+            case nameof(PartyCreatedDocument):
+                _item = obj.ToObject<PartyCreatedDocument>(serializer);
                 break;
 
-            case nameof(PartyUpdated):
-                _event = obj.ToObject<PartyUpdated>(serializer);
+            case nameof(PartyUpdatedDocument):
+                _item = obj.ToObject<PartyUpdatedDocument>(serializer);
                 break;
 
-            case nameof(SongRequestDenied):
-                _event = obj.ToObject<SongRequestDenied>(serializer);
+            case nameof(SongDeniedDocument):
+                _item = obj.ToObject<SongDeniedDocument>(serializer);
                 break;
 
-            case nameof(SongRequested):
-                _event = obj.ToObject<SongRequested>(serializer);
+            case nameof(SongRequestedDocument):
+                _item = obj.ToObject<SongRequestedDocument>(serializer);
                 break;
 
-            case nameof(SongRequestMet):
-                _event = obj.ToObject<SongRequestMet>(serializer);
+            case nameof(SongPlayedDocument):
+                _item = obj.ToObject<SongPlayedDocument>(serializer);
+                break;
+
+            case nameof(PartyProjection):
+                _item = obj.ToObject<PartyProjection>(serializer);
                 break;
         }
 
-        if (_event is null)
+        if (_item is null)
             throw new DeserializerNotFoundException($"Deserialization of object of type '{typeName}' not found");
 
-        return _event;
+        return _item;
     }
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)

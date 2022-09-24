@@ -10,14 +10,14 @@ public class Party
     private readonly RequestSongService _requestSongService;
     private readonly DenySongService _denySongService;
     private readonly PlaySongService _playSongService;
-    private readonly LoadPartyService _loadPartyService;
+    private readonly LoadPartyProjectionService _loadPartyService;
     private readonly UpdatePartyService _updatePartyService;
 
     public Party(CreatePartyService createPartyService,
         RequestSongService requestSongService,
         DenySongService denySongService,
         PlaySongService playSongService,
-        LoadPartyService loadPartyService,
+        LoadPartyProjectionService loadPartyService,
         UpdatePartyService updatePartyService)
     {
         _createPartyService = createPartyService;

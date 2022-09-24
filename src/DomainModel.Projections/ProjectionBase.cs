@@ -3,7 +3,7 @@ using Storage.CosmosDb.Abstractions;
 
 namespace DomainModel.Projections;
 
-public record ProjectionBase : ICosmosDbItem
+public record ProjectionBase : ICosmosDbDocument
 {
     public ProjectionBase(string id, string partitionKey, DateTime created)
     {

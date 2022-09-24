@@ -1,22 +1,22 @@
-﻿namespace DomainModel.Projections;
+﻿using Storage.CosmosDb.Abstractions;
 
-public record PartyProjection
+namespace DomainModel.Projections;
+
+public record PartyProjection : ProjectionBase
 {
     public PartyProjection(
         string id,
         string name,
         List<PlayedSongProjection> playedSongs,
         List<DeniedSongsProjection> deniedSongs,
-        List<SongRequestProjection> requestedSongs)
+        List<SongRequestProjection> requestedSongs) : base(id, id, DateTime.UtcNow)
     {
-        Id = id;
         Name = name;
         PlayedSongs = playedSongs;
         DeniedSongs = deniedSongs;
         RequestedSongs = requestedSongs;
     }
 
-    public string Id { get; init; }
     public string Name { get; set; }
     public List<PlayedSongProjection> PlayedSongs { get; init; }
     public List<DeniedSongsProjection> DeniedSongs { get; init; }

@@ -1,4 +1,4 @@
-﻿using DomainModel.Events.Party;
+﻿using DomainModel.Documents.Party;
 using DomainModel.Models;
 
 using Storage.CosmosDb;
@@ -7,11 +7,11 @@ namespace DomainModel.Services.Party;
 
 public class DenySongService
 {
-    private readonly ICosmosDbService cosmosDbService;
+    private readonly ICosmosDbService _cosmosDbService;
 
     public DenySongService(ICosmosDbService cosmosDbService)
     {
-        this.cosmosDbService = cosmosDbService;
+        this._cosmosDbService = cosmosDbService;
     }
 
     internal async Task<string> DenySong(DenySongModel model)
@@ -19,9 +19,9 @@ public class DenySongService
         // Event Broker
         var id = Guid.NewGuid().ToString();
 
-        var songDenied = new SongRequestDenied(id, model.PartyId, model.PartyId, DateTime.Now.ToUniversalTime(), model.SongTitle, model.ArtistName, model.ReasonForNotPlayingSong);
+        var songDenied = new SongDeniedDocument(id, model.PartyId, model.PartyId, DateTime.Now.ToUniversalTime(), model.SongTitle, model.ArtistName, model.ReasonForNotPlayingSong);
 
-        await cosmosDbService.EventContainerService.AddItemAsync(songDenied);
+        await _cosmosDbService.EventContainerService.AddItemAsync(songDenied);
 
         return id;
     }

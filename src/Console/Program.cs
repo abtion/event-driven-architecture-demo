@@ -1,11 +1,13 @@
 ﻿using DomainModel;
 using DomainModel.Models;
+using DomainModel.Setup;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 #region Configuration stuff
+
 var settings = new Dictionary<string, string> {
         { $"MusicRequest:DomainModel:CosmosDb:Account", "https://localhost:8081" },
         { $"MusicRequest:DomainModel:CosmosDb:Key", "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==" },
@@ -15,22 +17,25 @@ var settings = new Dictionary<string, string> {
 };
 
 var configBuilder = new ConfigurationBuilder();
+
 var confSection = configBuilder.AddInMemoryCollection(settings)
     .Build()
     .GetSection("MusicRequest:DomainModel:CosmosDb");
+
 #endregion Configuration stuff
 
 #region Dependency Injection stuff
+
 // https://www.programmingwithwolfgang.com/configure-dependency-injection-for-net-5-console-applications/
 // https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-usage
+
 var hostBuilder = Host.CreateDefaultBuilder(args);
-hostBuilder.ConfigureServices((_, services) =>
-{
-    services.AddMusicRequestDomainModel()
-        .UseCosmosDb(confSection);
-});
+
+hostBuilder.ConfigureServices((_, services) => services.AddMusicRequestDomainModel()
+        .UseCosmosDb(confSection));
 
 var host = hostBuilder.Build();
+
 #endregion Dependency Injection stuff
 
 // Event Producer

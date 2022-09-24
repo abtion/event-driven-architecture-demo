@@ -1,5 +1,4 @@
-﻿
-using DomainModel.Events;
+﻿using DomainModel.Documents;
 using DomainModel.Projections;
 
 using Microsoft.Azure.Cosmos;
@@ -10,7 +9,7 @@ using Newtonsoft.Json;
 
 using Storage.CosmosDb;
 
-namespace DomainModel;
+namespace DomainModel.Setup;
 
 public class MusicRequestDomainModelBuilder
 {
@@ -18,7 +17,7 @@ public class MusicRequestDomainModelBuilder
 
     public MusicRequestDomainModelBuilder(IServiceCollection services)
     {
-        this._services = services;
+        _services = services;
     }
 
     public MusicRequestDomainModelBuilder UseCosmosDb(IConfigurationSection configurationSection)
@@ -57,7 +56,7 @@ public class MusicRequestDomainModelBuilder
         await database.Database.CreateContainerIfNotExistsAsync(eventsContainerName, "/partitionKey");
         await database.Database.CreateContainerIfNotExistsAsync(projectionsContainerName, "/partitionKey");
 
-        var eventContainer = new CosmosDbContainerService<EventBase>(client, databaseName, eventsContainerName);
+        var eventContainer = new CosmosDbContainerService<DocumentBase>(client, databaseName, eventsContainerName);
         var projectionsContainer = new CosmosDbContainerService<ProjectionBase>(client, databaseName, projectionsContainerName);
 
         return new CosmosDbService(eventContainer, projectionsContainer);

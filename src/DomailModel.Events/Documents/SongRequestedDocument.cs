@@ -1,8 +1,8 @@
-﻿namespace DomainModel.Events.Party;
+﻿namespace DomainModel.Documents.Party;
 
-public record SongRequested : EventBase
+public record SongRequestedDocument : DocumentBase
 {
-    public SongRequested(string id, string partitionKey, string partyId, DateTime created, string songTitle, string artist) : base(id, partitionKey, created)
+    public SongRequestedDocument(string id, string partitionKey, string partyId, DateTime created, string songTitle, string artist) : base(id, partitionKey, created)
     {
         Id = id;
         PartitionKey = partitionKey;

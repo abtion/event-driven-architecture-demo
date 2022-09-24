@@ -1,10 +1,10 @@
 ﻿using Storage.CosmosDb.Abstractions;
 
-namespace DomainModel.Events;
+namespace DomainModel.Documents;
 
-public record EventBase : ICosmosDbItem
+public record DocumentBase : ICosmosDbDocument
 {
-    public EventBase(string id, string partitionKey, DateTime created)
+    public DocumentBase(string id, string partitionKey, DateTime created)
     {
         Id = id;
         PartitionKey = partitionKey;

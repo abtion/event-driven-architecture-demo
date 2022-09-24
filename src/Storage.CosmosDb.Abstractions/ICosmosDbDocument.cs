@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Storage.CosmosDb.Abstractions;
 
-public interface ICosmosDbItem
+public interface ICosmosDbDocument
 {
     [JsonProperty("id")] string Id { get; init; }
 

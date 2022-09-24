@@ -1,10 +1,10 @@
-﻿using DomainModel.Events;
+﻿using DomainModel.Documents;
 using DomainModel.Projections;
 
 namespace Storage.CosmosDb;
 
 public interface ICosmosDbService
 {
-    ICosmosDbContainerService<EventBase> EventContainerService { get; }
+    ICosmosDbContainerService<DocumentBase> EventContainerService { get; }
     ICosmosDbContainerService<ProjectionBase> ProjectionContainerService { get; }
 }

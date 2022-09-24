@@ -1,4 +1,4 @@
-﻿using DomainModel.Events;
+﻿using DomainModel.Documents;
 using DomainModel.Projections;
 
 using Microsoft.Azure.Cosmos;
@@ -12,12 +12,12 @@ namespace Storage.CosmosDb;
 /// </summary>
 public class CosmosDbService : ICosmosDbService
 {
-    public CosmosDbService(ICosmosDbContainerService<EventBase> eventContainerService, ICosmosDbContainerService<ProjectionBase> projectionContainerService)
+    public CosmosDbService(ICosmosDbContainerService<DocumentBase> eventContainerService, ICosmosDbContainerService<ProjectionBase> projectionContainerService)
     {
         EventContainerService = eventContainerService;
         ProjectionContainerService = projectionContainerService;
     }
 
-    public ICosmosDbContainerService<EventBase> EventContainerService { get; }
+    public ICosmosDbContainerService<DocumentBase> EventContainerService { get; }
     public ICosmosDbContainerService<ProjectionBase> ProjectionContainerService { get; }
 }

@@ -1,27 +1,27 @@
-﻿using DomainModel.Events.Party;
+﻿using DomainModel.Documents.Party;
+using DomainModel.DomainEvents;
 using DomainModel.Models;
-
 using Storage.CosmosDb;
 
 namespace DomainModel.Services.Party;
 
 public class RequestSongService
 {
-    private readonly ICosmosDbService cosmosDbService;
+    private readonly ICosmosDbService _cosmosDbService;
 
     public RequestSongService(ICosmosDbService cosmosDbService)
     {
-        this.cosmosDbService = cosmosDbService;
+        this._cosmosDbService = cosmosDbService;
     }
 
     internal async Task<string> RequestSong(RequestSongModel model)
     {
-        // Event Broker
         var id = Guid.NewGuid().ToString();
 
-        var songRequested = new SongRequested(id, model.PartyId, model.PartyId, DateTime.Now.ToUniversalTime(), model.SongTitle, model.ArtistName);
+        var document = new SongRequestedDocument(id, model.PartyId, model.PartyId, DateTime.Now.ToUniversalTime(), model.SongTitle, model.ArtistName);
 
-        await cosmosDbService.EventContainerService.AddItemAsync(songRequested);
+        await _cosmosDbService.EventContainerService.AddItemAsync(document);
+        //await EventBroker.Raise<SongRequestedEvent>(new SongRequestedEvent(document));
 
         return id;
     }
